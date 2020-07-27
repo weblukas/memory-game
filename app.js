@@ -6,41 +6,45 @@
       let disableClick = false;
       let firstCard, secondCard;
       
+      
+      function matchCards(){
+        if(firstCard.getAttribute('data-pic') === secondCard.getAttribute('data-pic')){
+          
+        }else {
+          disableClick = true;
+          setTimeout(function(){
+            firstCard.classList.toggle('hidden');
+            secondCard.classList.toggle('hidden');
+          }, 500)
+          disableClick = false;
+          
+        }
+      }
 
       allCards.forEach(el=>{
           el.addEventListener('click', checkCard)})
           
           
           function checkCard(){
-
+            
+            if(disableClick){
+              return;
+            }
             if(!checkedCardPic) {
               checkedCardPic = true;
-              disableClick = false;
+              
               firstCard = this;
               this.classList.toggle('hidden')
               
             }else {
               checkedCardPic = false;
+              disableClick = true;
               secondCard = this;
               this.classList.toggle('hidden')
               matchCards();
-              // allCards.forEach(el => el.removeEventListener('click', checkCard))
-               
+              // allCards.forEach(el => el.removeEventListener('click', checkCard))  
             }
-            
-              // allCards.forEach(el => el.addEventListener('click', checkCard))
-            
-            
-           
-            function matchCards(){
-              if(firstCard.getAttribute('data-pic') === secondCard.getAttribute('data-pic')){
-                
-              }else {
-                setTimeout(function(){
-                  firstCard.classList.toggle('hidden');
-                  secondCard.classList.toggle('hidden');
-                }, 500)
-                
-              }
-            }
+              // allCards.forEach(el => el.addEventListener('click', checkCard)) 
           }
+
+        
