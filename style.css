@@ -1,6 +1,6 @@
 body {
     background: rgb(58,53,131);
-background: linear-gradient(90deg, rgba(58,53,131,1) 0%, rgba(9,107,121,1) 35%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(90deg, rgba(58,53,131,1) 0%, rgba(9,107,121,1) 35%, rgba(0,212,255,1) 100%);
 }
 
 * {
@@ -33,7 +33,11 @@ background: linear-gradient(90deg, rgba(58,53,131,1) 0%, rgba(9,107,121,1) 35%, 
     opacity: 0;
 }
 
-.wrapper {
+.tile {
     background-color: rgb(184, 190, 190);
     margin: 10px;
+}
+
+.tile:hover {
+    background-color: rgba(75, 184, 111, 0.6);
 }

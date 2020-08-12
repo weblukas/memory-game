@@ -1,44 +1,45 @@
 
 const allCards = Array.from(document.querySelectorAll(".card"));
-// w sumie nie użyłem tej tablicy, później użyje
-let alreadyClicked = false;
-let disableClick = false;
-let firstCard, secondCard;
+const score = document.querySelector(".score");
 
-function matchCards() {
-  if (
-    firstCard.getAttribute("data-pic") === secondCard.getAttribute("data-pic")
-  ) {
-    // disableClick = false;
-  } else {
-    disableClick = true;
-    setTimeout(function () {
-      firstCard.classList.add("hidden");
-      secondCard.classList.add("hidden");
-      disableClick = false;
-    }, 500);
-  }
-}
+console.log(score);
+let firstClick = false;
+let secondClick = false;
+let firstCard, secondCard;
 
 allCards.forEach((el) => {
   el.addEventListener("click", checkCard);
 });
 
 function checkCard() {
-  if (disableClick) {
+  if (secondClick) {
     return;
   }
-  if (!alreadyClicked) {
-    alreadyClicked = true;
+  if (!firstClick) {
+    firstClick = true;
     firstCard = this;
     firstCard.classList.remove("hidden");
   } else {
-    alreadyClicked = false;
-    disableClick = true;
+    firstClick = false;
     secondCard = this;
     this.classList.remove("hidden");
-    matchCards();
-    // allCards.forEach(el => el.removeEventListener('click', checkCard))
+    matchCards();  
   }
-  // allCards.forEach(el => el.addEventListener('click', checkCard))
 }
+
+function matchCards() {
+  const match = (firstCard.getAttribute("data-pic") === secondCard.getAttribute("data-pic"))
+  if (match) {
+    firstCard.removeEventListener("click", checkCard);
+    secondCard.removeEventListener("click", checkCard);
+   score.innerHTML ++
+  } else {
+    secondClick = true;
+    setTimeout(function () {
+      firstCard.classList.add("hidden");
+      secondCard.classList.add("hidden");
+      secondClick = false;
+    }, 1000);
+  }
+}
+
