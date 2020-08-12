@@ -1,6 +1,6 @@
 
 const allCards = Array.from(document.querySelectorAll(".card"));
-const score = document.querySelector(".score");
+const score = document.querySelector(".score-number");
 
 console.log(score);
 let firstClick = false;
@@ -35,6 +35,7 @@ function matchCards() {
    score.innerHTML ++
   } else {
     secondClick = true;
+    score.innerHTML --
     setTimeout(function () {
       firstCard.classList.add("hidden");
       secondCard.classList.add("hidden");
